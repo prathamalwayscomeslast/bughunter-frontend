@@ -85,6 +85,12 @@ export function DashboardPage() {
         );
     }
 
+    console.log("dashboard response", data);
+    const recentRepositories = data.recent_repositories ?? [];
+    const recentJobs = data.recent_jobs ?? [];
+    const recentIssues = data.recent_issues ?? [];
+    const recentPullRequests = data.recent_pull_requests ?? [];
+
     return (
         <div className="space-y-6">
             <PageHeader
@@ -130,7 +136,7 @@ export function DashboardPage() {
                         }
                     />
                     <CardContent>
-                        {data.recent_repositories.length === 0 ? (
+                        {recentRepositories.length === 0 ? (
                             <EmptyState
                                 icon={<FolderGit2 className="h-5 w-5" />}
                                 title="No repositories yet"
@@ -138,7 +144,7 @@ export function DashboardPage() {
                             />
                         ) : (
                             <div className="grid gap-4">
-                                {data.recent_repositories.map((repository) => (
+                                {recentRepositories.map((repository) => (
                                     <RepoCard key={repository.id} repository={repository} />
                                 ))}
                             </div>
@@ -160,7 +166,7 @@ export function DashboardPage() {
                         }
                     />
                     <CardContent>
-                        {data.recent_jobs.length === 0 ? (
+                        {recentJobs.length === 0 ? (
                             <EmptyState
                                 icon={<Wrench className="h-5 w-5" />}
                                 title="No jobs yet"
@@ -168,7 +174,7 @@ export function DashboardPage() {
                             />
                         ) : (
                             <div className="space-y-3">
-                                {data.recent_jobs.map((job) => (
+                                {recentJobs.map((job) => (
                                     <div
                                         key={job.id}
                                         className="rounded-lg border border-border bg-surface-2 px-4 py-3"
@@ -212,7 +218,7 @@ export function DashboardPage() {
                         }
                     />
                     <CardContent>
-                        {data.recent_issues.length === 0 ? (
+                        {recentIssues.length === 0 ? (
                             <EmptyState
                                 icon={<CircleDot className="h-5 w-5" />}
                                 title="No issues yet"
@@ -220,7 +226,7 @@ export function DashboardPage() {
                             />
                         ) : (
                             <div className="space-y-3">
-                                {data.recent_issues.map((issue) => (
+                                {recentIssues.map((issue) => (
                                     <div
                                         key={issue.id}
                                         className="rounded-lg border border-border bg-surface-2 px-4 py-3"
@@ -255,7 +261,7 @@ export function DashboardPage() {
                         }
                     />
                     <CardContent>
-                        {data.recent_pull_requests.length === 0 ? (
+                        {recentPullRequests.length === 0 ? (
                             <EmptyState
                                 icon={<GitPullRequest className="h-5 w-5" />}
                                 title="No pull requests yet"
@@ -263,7 +269,7 @@ export function DashboardPage() {
                             />
                         ) : (
                             <div className="space-y-3">
-                                {data.recent_pull_requests.map((pr) => (
+                                {recentPullRequests.map((pr) => (
                                     <a
                                         key={pr.id}
                                         href={`https://github.com/${pr.repo_full_name}/pull/${pr.pr_number}`}
