@@ -35,7 +35,7 @@ const statusConfig: Record<
     },
     closed: {
         label: "Closed",
-        variant: "outline",
+        variant: "neutral",
     },
 };
 

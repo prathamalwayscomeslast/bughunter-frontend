@@ -11,7 +11,7 @@ const statusConfig: Record<
 > = {
     skipped: {
         label: "Skipped",
-        variant: "outline",
+        variant: "neutral",
     },
     pending: {
         label: "Pending",
